@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/08/06/JavaScript变量、作用域和内存问题/index.html">
 <meta property="og:site_name" content="Ray">
 <meta property="og:description" content="变量JavaScript变量松散类型的本质，决定了它只是在特定时间用于保存特定值的一个名字而已。由于不存在定义某个变量必须要保存何种数据类型值的规则，变量的值及其数据类型可以在脚本的生命周期内改变">
-<meta property="og:updated_time" content="2017-08-06T08:49:40.000Z">
+<meta property="og:updated_time" content="2018-01-29T14:19:04.656Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript变量、作用域和内存问题">
 <meta name="twitter:description" content="变量JavaScript变量松散类型的本质，决定了它只是在特定时间用于保存特定值的一个名字而已。由于不存在定义某个变量必须要保存何种数据类型值的规则，变量的值及其数据类型可以在脚本的生命周期内改变">
@@ -180,10 +180,10 @@
       
         <h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p>JavaScript变量松散类型的本质，决定了它只是在特定时间用于保存特定值的一个名字而已。由于不存在定义某个变量必须要保存何种数据类型值的规则，变量的值及其数据类型可以在脚本的生命周期内改变</p>
 <a id="more"></a>
-<h4 id="基本类型的值"><a href="#基本类型的值" class="headerlink" title="基本类型的值"></a>基本类型的值</h4><p>基本数据类型：undefined、null、Boolean、number、string。这五种基本数据类型是按值访问的，可以操作保存在变量中的实际的值。</p>
+<h3 id="基本类型的值"><a href="#基本类型的值" class="headerlink" title="基本类型的值"></a>基本类型的值</h3><p>基本数据类型：undefined、null、Boolean、number、string。这五种基本数据类型是按值访问的，可以操作保存在变量中的实际的值。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var num1=5;</div><div class="line">var num2=num1;</div><div class="line"></div><div class="line">console.log(num2);//5</div></pre></td></tr></table></figure>
-<h4 id="引用类型的值"><a href="#引用类型的值" class="headerlink" title="引用类型的值"></a>引用类型的值</h4><p>引用类型的值是保存在内存中的对象。与其他语言不同，JavaScript不允许直接访问内存中的位置，也就是说不能直接操作对象的内存空间。在操作对象时，实际上是在操作对象的引用而不是实际的对象。当复制保存着对象的某个变量时，操作的是对象的引用。但在为对象添加属性的时候，操作的是实际的对象。</p>
-<h4 id="传递参数"><a href="#传递参数" class="headerlink" title="传递参数"></a>传递参数</h4><p>ECMAScript中所有的参数都是按照值传递的。</p>
+<h3 id="引用类型的值"><a href="#引用类型的值" class="headerlink" title="引用类型的值"></a>引用类型的值</h3><p>引用类型的值是保存在内存中的对象。与其他语言不同，JavaScript不允许直接访问内存中的位置，也就是说不能直接操作对象的内存空间。在操作对象时，实际上是在操作对象的引用而不是实际的对象。当复制保存着对象的某个变量时，操作的是对象的引用。但在为对象添加属性的时候，操作的是实际的对象。</p>
+<h3 id="传递参数"><a href="#传递参数" class="headerlink" title="传递参数"></a>传递参数</h3><p>ECMAScript中所有的参数都是按照值传递的。</p>
 <ol>
 <li>在向参数传递基本类型的值时，被传递的值会被复制给一个局部变量（即命名参数，ECMAScript中就是arguments对象中的一个元素）</li>
 </ol>
@@ -194,7 +194,7 @@
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function setName(obj)&#123;</div><div class="line">    obj.name = &apos;ray&apos;;</div><div class="line">    var obj = new Object();</div><div class="line">    obj.name = &apos;key&apos;;</div><div class="line">    console.log(obj.name);//key</div><div class="line">&#125;</div><div class="line"></div><div class="line">var person = new Object();</div><div class="line">setName(person);</div><div class="line">console.log(person.name);//ray</div></pre></td></tr></table></figure>
 <p>这个例子说明即使在函数内部修改了参数的值，但原始的引用依然保持未变。实际上，当在函数内部重写obj的时候，这个变量引用的就是一个局部对象，这个局部对象在函数执行结束就会被销毁。</p>
-<h4 id="检测类型"><a href="#检测类型" class="headerlink" title="检测类型"></a>检测类型</h4><ol>
+<h3 id="检测类型"><a href="#检测类型" class="headerlink" title="检测类型"></a>检测类型</h3><ol>
 <li>基本数据类型的检测用 typeof</li>
 <li>引用类型的检测用instanceof<br>所有引用类型的值都是object的实例</li>
 </ol>

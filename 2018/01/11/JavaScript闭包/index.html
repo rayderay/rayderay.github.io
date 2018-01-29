@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2018/01/11/JavaScript闭包/index.html">
 <meta property="og:site_name" content="Ray">
 <meta property="og:description" content="什么是闭包引用 闭包是指有权访问另一个函数作用域中的变量的函数。创建闭包的常见方式，就是在一个函数内部创建另一个函数">
-<meta property="og:updated_time" content="2018-01-11T13:24:23.014Z">
+<meta property="og:updated_time" content="2018-01-29T14:22:18.492Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript闭包">
 <meta name="twitter:description" content="什么是闭包引用 闭包是指有权访问另一个函数作用域中的变量的函数。创建闭包的常见方式，就是在一个函数内部创建另一个函数">
@@ -178,16 +178,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="什么是闭包"><a href="#什么是闭包" class="headerlink" title="什么是闭包"></a>什么是闭包</h2><h6 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h6><blockquote>
+        <h3 id="什么是闭包"><a href="#什么是闭包" class="headerlink" title="什么是闭包"></a>什么是闭包</h3><h6 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h6><blockquote>
 <p>闭包是指有权访问另一个函数作用域中的变量的函数。创建闭包的常见方式，就是在一个函数内部创建另一个函数</p>
 </blockquote>
 <a id="more"></a>
-<h5 id="解释起来就是。每次定义一个函数，都会产生一个作用域链。当JavaScript寻找变量variable时，总会优先在当前作用域链的第一个对象中查找属性varible，如果找到，则直接使用这个属性；否则，继续查找下一个对象是否存在这个属性；这个过程会持续直至找到这个属性或者最终未找到引发错误为止。"><a href="#解释起来就是。每次定义一个函数，都会产生一个作用域链。当JavaScript寻找变量variable时，总会优先在当前作用域链的第一个对象中查找属性varible，如果找到，则直接使用这个属性；否则，继续查找下一个对象是否存在这个属性；这个过程会持续直至找到这个属性或者最终未找到引发错误为止。" class="headerlink" title="解释起来就是。每次定义一个函数，都会产生一个作用域链。当JavaScript寻找变量variable时，总会优先在当前作用域链的第一个对象中查找属性varible，如果找到，则直接使用这个属性；否则，继续查找下一个对象是否存在这个属性；这个过程会持续直至找到这个属性或者最终未找到引发错误为止。"></a>解释起来就是。每次定义一个函数，都会产生一个作用域链。当JavaScript寻找变量variable时，总会优先在当前作用域链的第一个对象中查找属性varible，如果找到，则直接使用这个属性；否则，继续查找下一个对象是否存在这个属性；这个过程会持续直至找到这个属性或者最终未找到引发错误为止。</h5><h2 id="闭包的原理"><a href="#闭包的原理" class="headerlink" title="闭包的原理"></a>闭包的原理</h2><blockquote>
+<p> 解释起来就是。每次定义一个函数，都会产生一个作用域链。当JavaScript寻找变量variable时，总会优先在当前作用域链的第一个对象中查找属性varible，如果找到，则直接使用这个属性；否则，继续查找下一个对象是否存在这个属性；这个过程会持续直至找到这个属性或者最终未找到引发错误为止。</p>
+<h3 id="闭包的原理"><a href="#闭包的原理" class="headerlink" title="闭包的原理"></a>闭包的原理</h3><blockquote>
 <p>JavaScript中的函数运行在他们被定义的作用域链里，而不是执行的作用域里。</p>
 </blockquote>
-<h5 id="举个例子"><a href="#举个例子" class="headerlink" title="举个例子"></a>举个例子</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">function f1()&#123;</div><div class="line"></div><div class="line">　　　　var n=999;</div><div class="line"></div><div class="line">　　　　function f2()&#123;</div><div class="line">　　　　　　alert(n); </div><div class="line">　　　　&#125;</div><div class="line"></div><div class="line">　　　　return f2;</div><div class="line"></div><div class="line">　　&#125;</div><div class="line"></div><div class="line">    </div><div class="line">　　var result=f1();</div><div class="line"></div><div class="line">　　result(); // 999</div></pre></td></tr></table></figure>
+<h4 id="举个例子"><a href="#举个例子" class="headerlink" title="举个例子"></a>举个例子</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">function f1()&#123;</div><div class="line"></div><div class="line">　　　　var n=999;</div><div class="line"></div><div class="line">　　　　function f2()&#123;</div><div class="line">　　　　　　alert(n); </div><div class="line">　　　　&#125;</div><div class="line"></div><div class="line">　　　　return f2;</div><div class="line"></div><div class="line">　　&#125;</div><div class="line"></div><div class="line">    </div><div class="line">　　var result=f1();</div><div class="line"></div><div class="line">　　result(); // 999</div></pre></td></tr></table></figure>
 <p>函数f2()被包括在函数f1()内部，这时f1()内部的所有局部变量，对f2都是可见的。但是反过来就不行，f2内部的局部变量，对f1()就是不可见的。</p>
-<h2 id="闭包的应用"><a href="#闭包的应用" class="headerlink" title="闭包的应用"></a>闭包的应用</h2><h5 id="闭包的特点很鲜明，闭包内，变量无法释放，无法被直接访问；闭包可以被延迟执行。所以可以用来"><a href="#闭包的特点很鲜明，闭包内，变量无法释放，无法被直接访问；闭包可以被延迟执行。所以可以用来" class="headerlink" title="闭包的特点很鲜明，闭包内，变量无法释放，无法被直接访问；闭包可以被延迟执行。所以可以用来"></a>闭包的特点很鲜明，闭包内，变量无法释放，无法被直接访问；闭包可以被延迟执行。所以可以用来</h5><ol>
+<h3 id="闭包的应用"><a href="#闭包的应用" class="headerlink" title="闭包的应用"></a>闭包的应用</h3><h4 id="闭包的特点很鲜明，闭包内，变量无法释放，无法被直接访问；闭包可以被延迟执行。所以可以用来"><a href="#闭包的特点很鲜明，闭包内，变量无法释放，无法被直接访问；闭包可以被延迟执行。所以可以用来" class="headerlink" title="闭包的特点很鲜明，闭包内，变量无法释放，无法被直接访问；闭包可以被延迟执行。所以可以用来"></a>闭包的特点很鲜明，闭包内，变量无法释放，无法被直接访问；闭包可以被延迟执行。所以可以用来</h4><ol>
 <li>管理私有变量和私有方法，将对变量（状态）的变化封装在安全的环境中</li>
 <li>将代码封装成一个闭包形式，等待时机成熟的时候在使用，比如实习柯里化和反柯里化</li>
 <li>需要注意的是，由于闭包内的部分资源无法释放，容易造成内存泄露</li>
