@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2018 | Ray</title>
+  <title>JavaScript 事件 | Ray</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Ray">
-<meta property="og:url" content="http://yoursite.com/archives/2018/index.html">
+  <meta name="description" content="事件JavaScript和HTML之间的交互是通过事件来完成的。事件，就是文档或浏览器窗口中发生的一些特定的交互瞬间。">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript 事件">
+<meta property="og:url" content="http://yoursite.com/2018/02/21/JavaScript-事件/index.html">
 <meta property="og:site_name" content="Ray">
+<meta property="og:description" content="事件JavaScript和HTML之间的交互是通过事件来完成的。事件，就是文档或浏览器窗口中发生的一些特定的交互瞬间。">
+<meta property="og:updated_time" content="2018-02-21T09:59:40.272Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ray">
+<meta name="twitter:title" content="JavaScript 事件">
+<meta name="twitter:description" content="事件JavaScript和HTML之间的交互是通过事件来完成的。事件，就是文档或浏览器窗口中发生的一些特定的交互瞬间。">
   
     <link rel="alternative" href="/atom.xml" title="Ray" type="application/atom+xml">
   
@@ -153,36 +158,86 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-JavaScript-事件" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      JavaScript 事件
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/02/21/JavaScript-事件/" class="archive-article-date">
+
+        
+        <a href="/2018/02/21/JavaScript-事件/" class="archive-article-date">
   	<time datetime="2018-02-21T09:57:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-21</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/02/21/JavaScript-事件/">JavaScript 事件</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h3><p>JavaScript和HTML之间的交互是通过事件来完成的。事件，就是文档或浏览器窗口中发生的一些特定的交互瞬间。</p>
+<a id="more"></a>
+<h4 id="事件流"><a href="#事件流" class="headerlink" title="事件流"></a>事件流</h4><p>事件流描述的是从页面接受事件的顺序。</p>
+<h5 id="1-事件冒泡"><a href="#1-事件冒泡" class="headerlink" title="1.事件冒泡"></a>1.事件冒泡</h5><p>IE的事件流叫做事件冒泡，即事件由最具体的元素接受，然后逐级向上传播到较为不具体的节点。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">    &lt;div&gt;&lt;/div&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure></p>
+<p>单击了页面中的div元素，那么这个click事件会按照如下顺序传播<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">1）&lt;div&gt;</div><div class="line">2) &lt;body&gt;</div><div class="line">3) &lt;html&gt;</div><div class="line">4) document</div></pre></td></tr></table></figure></p>
+<h5 id="2-事件捕获"><a href="#2-事件捕获" class="headerlink" title="2. 事件捕获"></a>2. 事件捕获</h5><p>事件捕获的思想是不太具体的节点应该更早接收到事件，而最具体的节点应该最后接收到事件</p>
+<p>同样的上面的例子，顺序应该是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">1) document</div><div class="line">2) &lt;html&gt;</div><div class="line">3) &lt;body&gt;</div><div class="line">4) &lt;div&gt;</div></pre></td></tr></table></figure></p>
+<h5 id="3-DOM事件流"><a href="#3-DOM事件流" class="headerlink" title="3. DOM事件流"></a>3. DOM事件流</h5><p>“DOM2级事件流”规定的事件流包括三个阶段：事件捕获阶段、处于目标阶段和事件冒泡阶段。</p>
+<h4 id="事件处理程序"><a href="#事件处理程序" class="headerlink" title="事件处理程序"></a>事件处理程序</h4><p>事件就是用户或浏览器自身执行的某种动作。而响应某个事件的函数就叫做事件处理程序。</p>
+<h5 id="1-HTML事件处理程序"><a href="#1-HTML事件处理程序" class="headerlink" title="1. HTML事件处理程序"></a>1. HTML事件处理程序</h5><p>类似<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;input type=&apos;button&apos; onclick=&apos;alert(1)&apos;&gt;</div></pre></td></tr></table></figure></p>
+<p>这种，因为JavaScript与HTML紧密耦合，所以不建议使用</p>
+<h5 id="2-DOM0级事件处理程序"><a href="#2-DOM0级事件处理程序" class="headerlink" title="2. DOM0级事件处理程序"></a>2. DOM0级事件处理程序</h5><p>将一个函数赋值给一个事件处理程序属性。</p>
+<h5 id="3-DOM2级事件处理程序"><a href="#3-DOM2级事件处理程序" class="headerlink" title="3. DOM2级事件处理程序"></a>3. DOM2级事件处理程序</h5><p>DOM2级事件定义了两个方法，用于处理制定和删除事件处理程序的操作:addEventListener()和removeEventListener()。所有的DOM都包含这两个方法，接受三个参数：要处理的事件名、作为事件处理程序的函数和一个布尔值。最后这个布尔值参数如果是true，表示在捕获阶段调用事件处理程序，如果是false，表示在冒泡阶段调用事件处理程序。</p>
+<h5 id="4-IE事件处理程序"><a href="#4-IE事件处理程序" class="headerlink" title="4. IE事件处理程序"></a>4. IE事件处理程序</h5><p>IE实现了与DOM中类似的两个方法： attachEvent()和detachEvent。由于IE及其更早的版本纸支持事件冒泡，所以通过attachEvent()添加的事件处理程序都会被添加到冒泡阶段。</p>
+<h4 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h4><p>在触发DOM上的某个事件时，会产生一个事件对象event,这个对象中包含着所有与事件有关的信息。</p>
+<h5 id="1-DOM中的事件对象"><a href="#1-DOM中的事件对象" class="headerlink" title="1. DOM中的事件对象"></a>1. DOM中的事件对象</h5><p>event对象的几个常用的事件</p>
+<ol>
+<li><p>bubbles<br>表明事件是否冒泡</p>
+</li>
+<li><p>cancelable<br>表明是否可以取消事件的默认行为</p>
+</li>
+<li><p>stopPropagation<br>取消事件的进一步捕获或冒泡，如果bubbles为true,则可以使用这个方法</p>
+</li>
+<li><p>preventDefault<br>取消事件的默认行为</p>
+</li>
+</ol>
+<h5 id="2-IE中的事件对象"><a href="#2-IE中的事件对象" class="headerlink" title="2. IE中的事件对象"></a>2. IE中的事件对象</h5><p>要访问IE中的event对象取决于指定事件处理程序的方法。</p>
+<ol>
+<li>cancelBubble<br> 默认值为false,将其设置为true就可以取消事件冒泡</li>
+<li>returnValue<br> 默认值为true,将其设置为false就可以取消默认事件</li>
+</ol>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -194,57 +249,106 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/02/21/JavaScript-事件/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/11/JavaScript闭包/" class="archive-article-date">
-  	<time datetime="2018-01-11T13:22:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-11</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/01/11/JavaScript闭包/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JavaScript闭包</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/11/JavaScript闭包/">JavaScript闭包</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -267,8 +371,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
