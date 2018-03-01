@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: webpack | Ray</title>
+  <title>Node.js 模块 | Ray</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Ray">
-<meta property="og:url" content="http://yoursite.com/tags/webpack/index.html">
+  <meta name="description" content="模块机制产生的原因JavaScript由于语言自身的局限性，他的规范十分薄弱。以下都是它的缺点">
+<meta name="keywords" content="Node.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js 模块">
+<meta property="og:url" content="http://yoursite.com/2018/03/01/Node-js-模块/index.html">
 <meta property="og:site_name" content="Ray">
+<meta property="og:description" content="模块机制产生的原因JavaScript由于语言自身的局限性，他的规范十分薄弱。以下都是它的缺点">
+<meta property="og:updated_time" content="2018-03-01T13:54:48.359Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ray">
+<meta name="twitter:title" content="Node.js 模块">
+<meta name="twitter:description" content="模块机制产生的原因JavaScript由于语言自身的局限性，他的规范十分薄弱。以下都是它的缺点">
   
     <link rel="alternative" href="/atom.xml" title="Ray" type="application/atom+xml">
   
@@ -153,60 +158,202 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Node-js-模块" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/28/webpack基本配置/" class="archive-article-date">
-  	<time datetime="2017-11-28T14:12:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/28/webpack基本配置/">webpack基本配置</a>
+    <h1 class="article-title" itemprop="name">
+      Node.js 模块
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/03/01/Node-js-模块/" class="archive-article-date">
+  	<time datetime="2018-03-01T13:53:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="模块机制产生的原因"><a href="#模块机制产生的原因" class="headerlink" title="模块机制产生的原因"></a>模块机制产生的原因</h4><p>JavaScript由于语言自身的局限性，他的规范十分薄弱。以下都是它的缺点</p>
+<a id="more"></a>
+<ul>
+<li>没有模块系统</li>
+<li><p>标准库较少</p>
+<p>  ECMAScript仅定义了部分核心库，对于文件系统，I/O流等常见需求没有标准的 API。</p>
+</li>
+<li><p>没有标准接口</p>
+</li>
+<li>缺乏包管理系统</li>
+</ul>
+<h4 id="CommonJS"><a href="#CommonJS" class="headerlink" title="CommonJS"></a>CommonJS</h4><p>CommonJS规范的提出，弥补了JavaScript没有规范的缺陷</p>
+<ol>
+<li><p>模块引用</p>
+<p> 使用require()方法来引入外部模块。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var math = require(&apos;math&apos;)</div></pre></td></tr></table></figure>
+</li>
+<li><p>模块定义</p>
+</li>
+</ol>
+<p>对应引入的功能，上下文提供了exprots对象用于导出当前模块的方法或者变量。在模块中，还存在一个module对象，它代表模块自身，而exprots是module的属性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">module.exprots = &#123;</div><div class="line">    add: add</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>模块标识</li>
+</ol>
+<p>模块标识就是传递给require（）方法的参数，它必须是复活小驼峰命名的字符串、相对或绝对路径，它可以没有文件后缀名。</p>
+<h4 id="模块编译"><a href="#模块编译" class="headerlink" title="模块编译"></a>模块编译</h4><p>编译和执行是引入文件模式的最后一个阶段。定位到具体的文件后，Node会新建一个模块对象，然后根据路径载入并编译。对于不同的文件扩展名，载入方式不同</p>
+<ul>
+<li>.js: 通过fs模块同步读取文件后编译执行</li>
+<li>.node: 用C/C++编写的扩展文件，通过dlopen()方法加载最后编译生成的文件。</li>
+<li>.json: 通过fs模块同步读取文件后,用JSON.parse()解析并返回结果</li>
+<li>其余扩展名文件: 使用.js的方式</li>
+</ul>
+<h5 id="JavaScript模块的编译"><a href="#JavaScript模块的编译" class="headerlink" title="JavaScript模块的编译"></a>JavaScript模块的编译</h5><p>在编译的过程中，Node会对获取的JavaScript文件内容进行了头尾包装。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(function(exports, require, module, _filename, _dirname)&#123;</div><div class="line">    //模块内的内容</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>这样每个模块文件之间都进行了作用域隔离。包装之后的代码会通过VM原生模块的runInThisContext()方法执行，返回一个具体的function对象。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">webpack</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Node.js</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/03/01/Node-js-模块/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/02/21/JavaScript-事件/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JavaScript 事件</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -229,9 +376,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
