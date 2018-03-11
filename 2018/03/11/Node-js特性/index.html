@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Ray</title>
+  <title>Node.js特性 | Ray</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Ray">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="单线程单线程是任务按照顺序执行的，并且每次只执行一个任务。只有前面的任务执行完成之后，后面的任务才执行。在JS引擎中负责解释和执行JavaScript代码的线程只有一个，即主线程。但实际上还存在其他的线程。例如处理ajax请求的线程、处理DOM的线程、定时器线程、读写文件的线程等。这些线程可能在JS引擎之内，也可能存在于JS引擎之外，这些被称为工作线程。">
+<meta name="keywords" content="Node.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js特性">
+<meta property="og:url" content="http://yoursite.com/2018/03/11/Node-js特性/index.html">
 <meta property="og:site_name" content="Ray">
+<meta property="og:description" content="单线程单线程是任务按照顺序执行的，并且每次只执行一个任务。只有前面的任务执行完成之后，后面的任务才执行。在JS引擎中负责解释和执行JavaScript代码的线程只有一个，即主线程。但实际上还存在其他的线程。例如处理ajax请求的线程、处理DOM的线程、定时器线程、读写文件的线程等。这些线程可能在JS引擎之内，也可能存在于JS引擎之外，这些被称为工作线程。">
+<meta property="og:updated_time" content="2018-03-11T11:53:13.915Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ray">
+<meta name="twitter:title" content="Node.js特性">
+<meta name="twitter:description" content="单线程单线程是任务按照顺序执行的，并且每次只执行一个任务。只有前面的任务执行完成之后，后面的任务才执行。在JS引擎中负责解释和执行JavaScript代码的线程只有一个，即主线程。但实际上还存在其他的线程。例如处理ajax请求的线程、处理DOM的线程、定时器线程、读写文件的线程等。这些线程可能在JS引擎之内，也可能存在于JS引擎之外，这些被称为工作线程。">
   
     <link rel="alternative" href="/atom.xml" title="Ray" type="application/atom+xml">
   
@@ -153,16 +158,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-Node-js特性" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-Node-js特性" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/11/Node-js特性/">Node.js特性</a>
+    <h1 class="article-title" itemprop="name">
+      Node.js特性
     </h1>
   
 
@@ -175,12 +178,59 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="单线程"><a href="#单线程" class="headerlink" title="单线程"></a>单线程</h3><p>单线程是任务按照顺序执行的，并且每次只执行一个任务。只有前面的任务执行完成之后，后面的任务才执行。在JS引擎中负责解释和执行JavaScript代码的线程只有一个，即主线程。但实际上还存在其他的线程。例如处理ajax请求的线程、处理DOM的线程、定时器线程、读写文件的线程等。这些线程可能在JS引擎之内，也可能存在于JS引擎之外，这些被称为工作线程。<br>
-        
-          <a class="article-more-a" href="/2018/03/11/Node-js特性/#more">more >></a>
-        
+        <h3 id="单线程"><a href="#单线程" class="headerlink" title="单线程"></a>单线程</h3><p>单线程是任务按照顺序执行的，并且每次只执行一个任务。只有前面的任务执行完成之后，后面的任务才执行。在JS引擎中负责解释和执行JavaScript代码的线程只有一个，即主线程。但实际上还存在其他的线程。例如处理ajax请求的线程、处理DOM的线程、定时器线程、读写文件的线程等。这些线程可能在JS引擎之内，也可能存在于JS引擎之外，这些被称为工作线程。<br><a id="more"></a></p>
+<p>借此理解一下异步函数的执行过程：</p>
+<p>主线程发布一个异步请求，相应的工作线程接受请求并告知主线程已经收到（异步函数返回），主线程继续执行后面的代码，同时工作线程执行异步任务。工作线程完成工作之后，通知主线程，主线程收到通知，执行回调函数。</p>
+<h3 id="异步I-0"><a href="#异步I-0" class="headerlink" title="异步I/0"></a>异步I/0</h3><h4 id="阻塞I-O和非阻塞I-O"><a href="#阻塞I-O和非阻塞I-O" class="headerlink" title="阻塞I/O和非阻塞I/O"></a>阻塞I/O和非阻塞I/O</h4><ul>
+<li>阻塞I/O：当用户发一个读取文件描述符的操作的时候，进程就会被阻塞，直到要读取的数据全部准备好返回给用户。</li>
+<li>非阻塞I/O：当用户发起一个读取文件描述符操作的时候，立即返回，进程继续执行。非阻塞I/O准备好数据之后还是需要阻塞进程去内核拿数据，所以不能称作异步I/O</li>
+</ul>
+<h4 id="同步I-O和异步I-O"><a href="#同步I-O和异步I-O" class="headerlink" title="同步I/O和异步I/O"></a>同步I/O和异步I/O</h4><ul>
+<li>同步I/O(synchronous I/O)做I/O operation的时候会将process阻塞,所以阻塞I/O，非阻塞I/O，IO多路复用I/O都是同步I/O。</li>
+<li>异步I/O(asynchronous I/O)做I/O opertaion的时候将不会造成任何的阻塞。</li>
+</ul>
+<h3 id="事件驱动"><a href="#事件驱动" class="headerlink" title="事件驱动"></a>事件驱动</h3><p>事件驱动就是监听事件的变化来做出相应的操作。比如读取文件，文件读取完毕，或者文件读取错误，那么就触发对应的状态，然后调用对应的回调函数来进行处理。</p>
+<h4 id="线程驱动和事件驱动"><a href="#线程驱动和事件驱动" class="headerlink" title="线程驱动和事件驱动"></a>线程驱动和事件驱动</h4><ul>
+<li>线程驱动： 当收到一个请求的时候，就会为该请求开一个新的线程来处理请求，一般存在一个线程池，线程池中有空闲的线程，会从线程池中拿取线程来处理，如果线程中没有空闲的线程，新来的请求会进入队列排队，直到线程池中空闲线程。</li>
+<li>事件驱动： 当收到一个请求的时候，请求会被压入队列中，然后通过一个循环来检测队列中的事件状态变化，如果检测到有状态变化的事件，那么就执行该事件对应的处理代码，一般都是回调函数。</li>
+</ul>
+<h4 id="一个具体的例子"><a href="#一个具体的例子" class="headerlink" title="一个具体的例子"></a>一个具体的例子</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">var fs = require(&quot;fs&quot;);</div><div class="line">var debug = require(&apos;debug&apos;)(&apos;example1&apos;);</div><div class="line"></div><div class="line">debug(&quot;begin&quot;);</div><div class="line"></div><div class="line">fs.readFile(&apos;package.json&apos;,&apos;utf-8&apos;,function(err,data)&#123;</div><div class="line">    if(err)  </div><div class="line">        debug(err);</div><div class="line">    else</div><div class="line">        debug(&quot;get file content&quot;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">setTimeout(function()&#123;</div><div class="line">    debug(&quot;timeout2&quot;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">debug(&apos;end&apos;);</div></pre></td></tr></table></figure>
+<ol>
+<li>主线程同步执行debug(“begin”)。</li>
+<li>异步调用fs.readFile,此时会开一个新的线程去进行异步I/O操作。</li>
+<li>异步调用setTimeout，将超时信息压入到消息队列（Message queue）中</li>
+<li>主线程同步执行debug(“end”)。</li>
+<li>开启事件循环，弹出消息队列中的信息（目前只有setTimeout）.</li>
+<li>事件循环暂停，执行消息队列中的回调函数。</li>
+<li>回调函数执行完成之后，开启事件循环。</li>
+<li>异步I/O读取文件完毕，将消息压入到消息队列。</li>
+<li>事件循环取得消息，执行回调。</li>
+<li>回调结束，事件循环没有新的事件，返回到主线程。程序执行完毕。</li>
+</ol>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -200,16 +250,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/11/Node-js特性/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/03/11/Node-js特性/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2018/03/01/Node-js-模块/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Node.js 模块</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -229,529 +338,14 @@
 
 
 
-
   
-    <article id="post-Node-js-模块" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/01/Node-js-模块/">Node.js 模块</a>
-    </h1>
   
 
-        
-        <a href="/2018/03/01/Node-js-模块/" class="archive-article-date">
-  	<time datetime="2018-03-01T13:53:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="模块机制产生的原因"><a href="#模块机制产生的原因" class="headerlink" title="模块机制产生的原因"></a>模块机制产生的原因</h4><p>JavaScript由于语言自身的局限性，他的规范十分薄弱。以下都是它的缺点</p>
-        
-          <a class="article-more-a" href="/2018/03/01/Node-js-模块/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Node.js</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/01/Node-js-模块/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-JavaScript-事件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/21/JavaScript-事件/">JavaScript 事件</a>
-    </h1>
   
 
-        
-        <a href="/2018/02/21/JavaScript-事件/" class="archive-article-date">
-  	<time datetime="2018-02-21T09:57:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h3><p>JavaScript和HTML之间的交互是通过事件来完成的。事件，就是文档或浏览器窗口中发生的一些特定的交互瞬间。</p>
-        
-          <a class="article-more-a" href="/2018/02/21/JavaScript-事件/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/21/JavaScript-事件/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-JavaScript闭包" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/11/JavaScript闭包/">JavaScript闭包</a>
-    </h1>
   
 
-        
-        <a href="/2018/01/11/JavaScript闭包/" class="archive-article-date">
-  	<time datetime="2018-01-11T13:22:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="什么是闭包"><a href="#什么是闭包" class="headerlink" title="什么是闭包"></a>什么是闭包</h3><h6 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h6><blockquote>
-<p>闭包是指有权访问另一个函数作用域中的变量的函数。创建闭包的常见方式，就是在一个函数内部创建另一个函数</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2018/01/11/JavaScript闭包/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/01/11/JavaScript闭包/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-webpack基本配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/28/webpack基本配置/">webpack基本配置</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/28/webpack基本配置/" class="archive-article-date">
-  	<time datetime="2017-11-28T14:12:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="什么是webpack"><a href="#什么是webpack" class="headerlink" title="什么是webpack"></a>什么是webpack</h3><p>webpack是前端模块化工具。可以找到JavaScript模块以及其他一些浏览器不能直接运行的扩展语言（sass,Typescript等），并将其转换和打包为合适的格式供浏览器使用</p>
-        
-          <a class="article-more-a" href="/2017/11/28/webpack基本配置/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">webpack</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/28/webpack基本配置/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-JavaScript变量、作用域和内存问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/06/JavaScript变量、作用域和内存问题/">JavaScript变量、作用域和内存问题</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/06/JavaScript变量、作用域和内存问题/" class="archive-article-date">
-  	<time datetime="2017-08-06T08:46:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p>JavaScript变量松散类型的本质，决定了它只是在特定时间用于保存特定值的一个名字而已。由于不存在定义某个变量必须要保存何种数据类型值的规则，变量的值及其数据类型可以在脚本的生命周期内改变</p>
-        
-          <a class="article-more-a" href="/2017/08/06/JavaScript变量、作用域和内存问题/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/06/JavaScript变量、作用域和内存问题/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-JavaScript执行顺序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/30/JavaScript执行顺序/">JavaScript执行顺序</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/30/JavaScript执行顺序/" class="archive-article-date">
-  	<time datetime="2017-07-30T09:28:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="JavaScript运行机制"><a href="#JavaScript运行机制" class="headerlink" title="JavaScript运行机制"></a>JavaScript运行机制</h2><p>JavaScript是一种描述型脚本语言，它不需要进行编译成中间语言，而是由浏览器进行动态的解析与执行。</p>
-        
-          <a class="article-more-a" href="/2017/07/30/JavaScript执行顺序/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/30/JavaScript执行顺序/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-my-first-blog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/24/my-first-blog/">my first blog</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/24/my-first-blog/" class="archive-article-date">
-  	<time datetime="2017-06-24T10:02:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="搞定了"><a href="#搞定了" class="headerlink" title="搞定了"></a>搞定了</h4><p>用了一个小时搞定了技术博客<br>相当的开心<br>原本以为会费很长时间 看来很久的攻略<br>没想到很快就搞定了！</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/24/my-first-blog/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
 
 
@@ -774,8 +368,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
