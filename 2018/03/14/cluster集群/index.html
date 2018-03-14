@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Ray</title>
+  <title>Node.js使用cluster实现多线程 | Ray</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Ray">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="Node.js实现多进程node.js是一门单线程异步非阻塞的语言。这样会产生单进程单线程对多核使用不足的问题。为了解决这个问题，node内建模块提供了child_process和cluster模块。">
+<meta name="keywords" content="Node.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js使用cluster实现多线程">
+<meta property="og:url" content="http://yoursite.com/2018/03/14/cluster集群/index.html">
 <meta property="og:site_name" content="Ray">
+<meta property="og:description" content="Node.js实现多进程node.js是一门单线程异步非阻塞的语言。这样会产生单进程单线程对多核使用不足的问题。为了解决这个问题，node内建模块提供了child_process和cluster模块。">
+<meta property="og:updated_time" content="2018-03-14T13:04:39.067Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ray">
+<meta name="twitter:title" content="Node.js使用cluster实现多线程">
+<meta name="twitter:description" content="Node.js实现多进程node.js是一门单线程异步非阻塞的语言。这样会产生单进程单线程对多核使用不足的问题。为了解决这个问题，node内建模块提供了child_process和cluster模块。">
   
     <link rel="alternative" href="/atom.xml" title="Ray" type="application/atom+xml">
   
@@ -153,36 +158,80 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-cluster集群" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Node.js使用cluster实现多线程
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/14/cluster集群/" class="archive-article-date">
+
+        
+        <a href="/2018/03/14/cluster集群/" class="archive-article-date">
   	<time datetime="2018-03-14T13:03:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-14</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/14/cluster集群/">Node.js使用cluster实现多线程</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="Node-js实现多进程"><a href="#Node-js实现多进程" class="headerlink" title="Node.js实现多进程"></a>Node.js实现多进程</h4><p>node.js是一门单线程异步非阻塞的语言。这样会产生单进程单线程对多核使用不足的问题。为了解决这个问题，node内建模块提供了child_process和cluster模块。</p>
+<a id="more"></a>
+<h4 id="cluster"><a href="#cluster" class="headerlink" title="cluster"></a>cluster</h4><h5 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h5><p>cluster是node提供的一个多线程库，用户可以使用它来创建多个线程。线程之间共享一个监听端口，当有外部请求这个端口时候，cluster会将请求转发到随机线程里。因为每个node线程会占用几十兆的内存，所以不能像PHP那也对每个请求创建一个线程，一般来说创建的线程数最多不超过cpu的核心数量。</p>
+<p>基本代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">if(cluster.isMaster)&#123;</div><div class="line">  console.log(&apos;[master] &apos; + &apos;start master...&apos;);</div><div class="line"></div><div class="line">  for(var i = 0 ;i &lt; numCPUs; i++)&#123;</div><div class="line">    cluster.fork();</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">  cluster.on(&apos;listening&apos;, function(worker, address)&#123;</div><div class="line">    console.log(&apos;[master]&apos; + &apos;listening: worker&apos; + worker.id + &apos;,pid:&apos;+ worker.process.pid + &apos;, Address&apos;+ address.address + &apos;:&apos; + address.port);</div><div class="line">  &#125;)</div><div class="line">&#125;else if(cluster.isWorker)&#123;</div><div class="line">  console.log(&apos;[worker] &apos;+ &apos;start worker ...&apos; + cluster.worker.id);</div><div class="line">  var num = 0;</div><div class="line">  http.createServer(function(req, res)&#123;</div><div class="line">    num++;</div><div class="line">    console.log(&apos;worker&apos;+ cluster.worker.id+ &apos;:&apos;+ num);</div><div class="line">    res.end(&apos;worker&apos;+ cluster.worker.id+ &apos;,PID&apos;+process.pid);</div><div class="line">  &#125;).listen(3000);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>运行结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[master] start master...</div><div class="line">[worker] start worker ...4</div><div class="line">[worker] start worker ...1</div><div class="line">[worker] start worker ...2</div><div class="line">[master]listening: worker4,pid:20793, Addressnull:3000</div><div class="line">[master]listening: worker1,pid:20790, Addressnull:3000</div><div class="line">[worker] start worker ...3</div><div class="line">[master]listening: worker2,pid:20791, Addressnull:3000</div><div class="line">[master]listening: worker3,pid:20792, Addressnull:3000</div></pre></td></tr></table></figure>
+<p>如上代码所示，程序运行时cluster.isMaster会被设置为true,当调用cluster.fork()之后，程序会创建一个线程，并重新运行，这时cluster.isMaster就会被设置为false。我们主要通过这个变量来判断当前线程是不是子线程。</p>
+<p>线程之间不能共享数据，所有的数据交换只能通过线程之间的通信来交换。而且所交换的数据都是可序列化的。所以函数、文件描述和HttpPesponse之类的东西不能传递。</p>
+<h5 id="运行原理"><a href="#运行原理" class="headerlink" title="运行原理"></a>运行原理</h5><p>cluster模块是child_process模块和net模块的组合应用。cluster启动时，它会在内部启动TCP服务器，在cluster.fork()子进程时，将这个TCP服务端socket的文件描述符发送给工作进程。如果进程是通过cluter.fork()复制过来的，那么他的环境变量NODE_UNIQUE_ID，如果工作进程中存在listen()侦听网络端口的调用，它将拿到该文件描述符，通过SO_REUSEADDR端口重用，从而实现多个子进程共享端口。</p>
+<h5 id="使用siege进行并发测试"><a href="#使用siege进行并发测试" class="headerlink" title="使用siege进行并发测试"></a>使用siege进行并发测试</h5><h6 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install siege</div></pre></td></tr></table></figure>
+<h6 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h6><ol>
+<li>-c NUM  设置并发的用户数量</li>
+<li>-r NUM  设置发送几轮的请求</li>
+</ol>
+<h6 id="进行测试"><a href="#进行测试" class="headerlink" title="进行测试"></a>进行测试</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">siege -c 100 -r 2 http://localhost:3000</div></pre></td></tr></table></figure>
+<p>返回的结果统计如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Transactions:		         200 hits</div><div class="line">Availability:		      100.00 %</div><div class="line">Elapsed time:		        0.27 secs</div><div class="line">Data transferred:	        0.00 MB</div><div class="line">Response time:		        0.09 secs</div><div class="line">Transaction rate:	      740.74 trans/sec</div><div class="line">Throughput:		        0.01 MB/sec</div><div class="line">Concurrency:		       66.52</div><div class="line">Successful transactions:         200</div><div class="line">Failed transactions:	           0</div><div class="line">Longest transaction:	        0.17</div><div class="line">Shortest transaction:	        0.02</div></pre></td></tr></table></figure>
+<p>对应的几个重要的字段进行解释：</p>
+<ol>
+<li>Throughput： 吞吐率（单位时间内网络上传输的数据量。MB/sec）</li>
+<li>Data transferred： 吞吐量（在没有时间的限制下，一次测试的数据总和）</li>
+<li>并发数：Concurrency</li>
+</ol>
+<p>使用siege对代码进行了并发测试，发送了200次请求，可以看到输出的多线程使用信息。粗略的实现了一次并发测试。</p>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -194,322 +243,106 @@
 		</ul>
 	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/11/Node-js特性/" class="archive-article-date">
-  	<time datetime="2018-03-11T11:51:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/11/Node-js特性/">Node.js特性</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Node.js</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/01/Node-js-模块/" class="archive-article-date">
-  	<time datetime="2018-03-01T13:53:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/01/Node-js-模块/">Node.js 模块</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Node.js</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/02/21/JavaScript-事件/" class="archive-article-date">
-  	<time datetime="2018-02-21T09:57:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/02/21/JavaScript-事件/">JavaScript 事件</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/11/JavaScript闭包/" class="archive-article-date">
-  	<time datetime="2018-01-11T13:22:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/11/JavaScript闭包/">JavaScript闭包</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
       
-        </div></section>
+
       
+
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/28/webpack基本配置/" class="archive-article-date">
-  	<time datetime="2017-11-28T14:12:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/28/webpack基本配置/">webpack基本配置</a>
-    </h1>
-  
+      </div>
+    </span>
+  </div>
+</div>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">webpack</a>
-        		</li>
-      		
-		</ul>
-	</div>
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/03/14/cluster集群/" alt="微信分享二维码">
+    </div>
+</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/06/JavaScript变量、作用域和内存问题/" class="archive-article-date">
-  	<time datetime="2017-08-06T08:46:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-06</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/03/11/Node-js特性/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Node.js特性</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/06/JavaScript变量、作用域和内存问题/">JavaScript变量、作用域和内存问题</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/30/JavaScript执行顺序/" class="archive-article-date">
-  	<time datetime="2017-07-30T09:28:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/30/JavaScript执行顺序/">JavaScript执行顺序</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/24/my-first-blog/" class="archive-article-date">
-  	<time datetime="2017-06-24T10:02:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/24/my-first-blog/">my first blog</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -532,8 +365,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
