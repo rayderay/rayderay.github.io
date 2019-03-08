@@ -155,6 +155,624 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-HTML5新增" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/08/HTML5新增/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-flex布局" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/20/flex布局/">flex布局</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/20/flex布局/" class="archive-article-date">
+  	<time datetime="2018-07-20T09:57:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><h4 id="基本书写"><a href="#基本书写" class="headerlink" title="基本书写"></a>基本书写</h4><p>flex意味着弹性布局，用来为盒模型提供最大的灵活性。</p>
+<ul>
+<li>任何一个容器都可以为flex布局</li>
+<li><p>行内元素也可以是flex布局</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.box&#123;</div><div class="line">    display:inline-flex</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>webkit内核的浏览器，必须加上-webkit前缀</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">.box&#123;</div><div class="line">    display:flex;</div><div class="line">    display:-webkit-flex;//Safari</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><ol>
+<li>容器：采用flex布局的容器</li>
+<li>项目：所有子元素自动成为容器成员。设为flex属性后，所有子元素的clear、float和verti-align属性即将失效。</li>
+</ol>
+<h4 id="容器的属性"><a href="#容器的属性" class="headerlink" title="容器的属性"></a>容器的属性</h4><h4 id="flex-direction"><a href="#flex-direction" class="headerlink" title="flex-direction"></a>flex-direction</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.box&#123;</div><div class="line">    flex-direction: row| row-reverse | column | column-reverse</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>row: 主轴水平方向，起点左端</li>
+<li>row-reverse: 主轴水平方向，起点右端</li>
+<li>column：主轴竖直方向，起点上沿</li>
+<li>column-reverse：主轴竖直方向，起点下沿</li>
+</ul>
+<h4 id="flex-wrap"><a href="#flex-wrap" class="headerlink" title="flex-wrap"></a>flex-wrap</h4><p>默认情况下项目排在轴线上。这个属性定义如何换行。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.box&#123;</div><div class="line">flex-wrap:nowrap | wrap | wrap-reverse</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>nowrap:不换行</li>
+<li>wrap：换行，第一行在上方</li>
+<li>wrap-reverse：换行，第一行在下方</li>
+</ul>
+<h4 id="flex-flow"><a href="#flex-flow" class="headerlink" title="flex-flow"></a>flex-flow</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.box &#123;</div><div class="line">    flex-flow:&lt;flex-direction&gt; &lt;flex-wrap&gt;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="justify-content"><a href="#justify-content" class="headerlink" title="justify-content"></a>justify-content</h4><p>定义了项目在主轴上的对齐方式。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.box&#123;</div><div class="line">    justify-content:flex-start| flext-end| center | space-between | space-around</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>flex-start（默认值）：左对齐</li>
+<li>flex-end：右对齐</li>
+<li>center： 居中</li>
+<li>space-between：两端对齐，项目之间的间隔都相等。</li>
+<li>space-around：每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。</li>
+</ul>
+<h4 id="align-items"><a href="#align-items" class="headerlink" title="align-items"></a>align-items</h4><p>定义了项目在交叉轴上如何对齐<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.box&#123;</div><div class="line">    align-items:flex-start | flex-end | center | baseline |strech</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>flex-start：交叉轴的起点对齐。</li>
+<li>flex-end：交叉轴的终点对齐。</li>
+<li>center：交叉轴的中点对齐。</li>
+<li>baseline: 项目的第一行文字的基线对齐。</li>
+<li>stretch（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度。</li>
+</ul>
+<h3 id="项目属性"><a href="#项目属性" class="headerlink" title="项目属性"></a>项目属性</h3><h4 id="order"><a href="#order" class="headerlink" title="order"></a>order</h4><p>定义项目的顺序，数值越小越前。</p>
+<h4 id="flex-grow"><a href="#flex-grow" class="headerlink" title="flex-grow"></a>flex-grow</h4><p>定义项目的放大比例。默认为0，即使存在剩余空间，也不会放大。<br>如果所有的flex-grow属性为1，则他们讲等分剩余空间。如果一个项目的flex-grow属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。</p>
+<h4 id="flex-shrink"><a href="#flex-shrink" class="headerlink" title="flex-shrink"></a>flex-shrink</h4><p>定义项目是缩小比率，默认为1，如果空间不足，改项目将缩小。</p>
+<p>如果所有项目的flex-shrink属性都为1，当空间不足时，都将等比例缩小。如果一个项目的flex-shrink属性为0，其他项目都为1，则空间不足时，前者不缩小。</p>
+<p>负值对该属性无效。</p>
+<h4 id="flex-basis"><a href="#flex-basis" class="headerlink" title="flex-basis"></a>flex-basis</h4><p>flex-basis属性定义了在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小。</p>
+<p>它可以设为跟width或height属性一样的值（比如350px），则项目将占据固定空间。</p>
+<h4 id="flex属性"><a href="#flex属性" class="headerlink" title="flex属性"></a>flex属性</h4><p>flex属性是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.item&#123;</div><div class="line">    flex: none |  [ &lt;&apos;flex-grow&apos;&gt; &lt;&apos;flex-shrink&apos;&gt;? || &lt;&apos;flex-basis&apos;&gt; ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>该属性有两个快捷值：auto (1 1 auto) 和 none (0 0 auto)</strong>。</p>
+<p>建议优先使用这个属性，而不是单独写三个分离的属性，因为浏览器会推算相关值。</p>
+<h4 id="align-self"><a href="#align-self" class="headerlink" title="align-self"></a>align-self</h4><p>align-self属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。</p>
+<h4 id="FFC"><a href="#FFC" class="headerlink" title="FFC"></a>FFC</h4><ol>
+<li>Flexbox 布局新定义了格式化上下文，类似 BFC（block formatting context）</li>
+<li>float和clear对于flex中的子元素（项目）没有效果，但是对于FFC盒子本身有效果</li>
+<li>FFC模式下的子元素不会继承父级元素的宽高</li>
+<li><p>设置了position:absolute的子元素位置受三个方面的影响 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">justify-content | align-items &gt; top、left、right、bottom=margin（优先级排序）</div></pre></td></tr></table></figure>
+</li>
+<li><p>width:非auto 和 flex-basis（优先级）同时设置时，width:非auto &lt; flex-basis（优先级）</p>
+</li>
+</ol>
+<p>参考的文献：<br><a href="https://www.cnblogs.com/jiasonglindeboke/p/9038750.html" target="_blank" rel="external">https://www.cnblogs.com/jiasonglindeboke/p/9038750.html</a></p>
+<p><a href="https://www.cnblogs.com/nuannuan7362/p/5823381.html" target="_blank" rel="external">https://www.cnblogs.com/nuannuan7362/p/5823381.html</a></p>
+<p><a href="https://www.w3cplus.com/css3/flexbox-layout-and-calculation.html" target="_blank" rel="external">https://www.w3cplus.com/css3/flexbox-layout-and-calculation.html</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CSS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/20/flex布局/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-JavaScript 深拷贝浅拷贝" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/20/JavaScript 深拷贝浅拷贝/">JavaScript apply、call、bind</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/20/JavaScript 深拷贝浅拷贝/" class="archive-article-date">
+  	<time datetime="2018-06-20T09:57:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h4><p>引用地址的拷贝，A变化，B跟着一起变化</p>
+<h4 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h4><ol>
+<li><p>递归实现深拷贝</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">function deepClone(obj)&#123;</div><div class="line">	let objClone = Array.isArray(obj)？[]:&#123;&#125;;</div><div class="line">	if(obj &amp;&amp; typeof obj === &apos;object&apos;)&#123;</div><div class="line">		for(key in obj)&#123;</div><div class="line">			if(obj.hasOwnPrototypy(key))&#123;//忽略继承的属性</div><div class="line">				if(obj[key]&amp;&amp; obj[key] === &apos;object&apos;)&#123;//判断obj的子元素是否为对象，如果是，递归复制</div><div class="line">					objClone[key] = deepClone(obj[key])</div><div class="line">				&#125;else&#123;</div><div class="line">					objClone[key] = obj[key]</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	return objClone;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>使用JSON对象实现parse和stringfy</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function deepclone(obj)&#123;</div><div class="line">    let _obj = JSON.stringfy(obj);</div><div class="line">    let objClone = JSON.parse(_obj);</div><div class="line">    return objClone;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>通过jQuery的extend方法实现深拷贝</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var array = [1,2,3,4];</div><div class="line">var newArray = $.extend(true,[],array);</div></pre></td></tr></table></figure>
+<p>#### </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/20/JavaScript 深拷贝浅拷贝/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-JavaScript apply、call、bind" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/20/JavaScript apply、call、bind/">JavaScript apply、call、bind</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/20/JavaScript apply、call、bind/" class="archive-article-date">
+  	<time datetime="2018-05-20T09:57:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="apply和call"><a href="#apply和call" class="headerlink" title="apply和call"></a>apply和call</h3><h4 id="相同点"><a href="#相同点" class="headerlink" title="相同点"></a>相同点</h4><p>作用一致。<br>都是在特定的作用域中调用此函数，等于设置函数体this对象的值，以扩充函数赖以运行的作用域。</p>
+<h4 id="不同点"><a href="#不同点" class="headerlink" title="不同点"></a>不同点</h4><h5 id="apply"><a href="#apply" class="headerlink" title="apply()"></a>apply()</h5><p>apply([thisObj,[argArray]])</p>
+<p>如果argArray不是一个有效数组或不是arguments对象，那么将导致一个<br>TypeError，如果没有提供argArray和thisObj任何一个参数，那么Global对象将用作thisObj。</p>
+<h5 id="call"><a href="#call" class="headerlink" title="call()"></a>call()</h5><p>call([thisObject[,arg1 [,arg2 [,…,argn]]]])</p>
+<p>call方法可以用来代替另一个对象调用一个方法，call方法可以将一个函数的对象上下文从初始的上下文改变为thisObj指定的新对象，如果没有提供thisObj参数，那么Global对象被用于thisObj。</p>
+<h3 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h3><h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4><p>fun.bind(this,arg1,arg2,…)</p>
+<p>bind()方法会创建一个新的函数，称为绑定函数,fun方法在this环境下调用</p>
+<p>该方法可传入两个参数，第一个参数作为this，第二个及以后的参数则作为函数的参数调用</p>
+<h4 id="和apply、call的区别"><a href="#和apply、call的区别" class="headerlink" title="和apply、call的区别"></a>和apply、call的区别</h4><p>不会立即调用,bind返回的是一个函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var tempFn = fn.bind(obj,1,2)</div><div class="line">tempFn()</div></pre></td></tr></table></figure></p>
+<h4 id="用原生JavaScript完成Bind函数"><a href="#用原生JavaScript完成Bind函数" class="headerlink" title="用原生JavaScript完成Bind函数"></a>用原生JavaScript完成Bind函数</h4><p>bind函数不仅会复制被调函数的函数体，原型链也要复制</p>
+<p>将绑定函数作为构造函数使用的时候，bind提供的this指向无效，但是还是可以预设参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">function Test3(a, b) &#123;</div><div class="line">    this.a = a;</div><div class="line">    this.b = b;</div><div class="line">&#125;</div><div class="line">Test3.prototype.add = function () &#123;</div><div class="line">    return this.a + this.b;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 如果不用 bind，正常来说这样处理</div><div class="line">var t1 = new Test3(1, 2);</div><div class="line">t1.add(); // 3, this 指向 t1</div><div class="line"></div><div class="line">// 使用 bind</div><div class="line">var NewTest3 = Test3.bind(null, 3);</div><div class="line">var t2 = new NewTest3(4);</div><div class="line">t2.add(); // 7, this 指向 t2</div></pre></td></tr></table></figure>
+<p>用原生的实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">Function.prototype.myBind = function(context)&#123;</div><div class="line">	let that = this;</div><div class="line">	let args = Array.prototype.slice.call(arguments,1);</div><div class="line"></div><div class="line">	var bound = function()&#123;</div><div class="line">		if(this instanceof bound)&#123;//如果作为构造函数，那么第一个参数context就不需要</div><div class="line">			return that.apply(this, args.concat(Array.prototype.slice.call(arguments)));</div><div class="line">		&#125;else&#123;</div><div class="line">			return that.apply(context, args.concat(Array.prototype.slice.call(arguments)));</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	if(this.prototype)&#123;</div><div class="line">		bound.prototype = this.prototype;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	return bound;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>参考文档 <a href="https://blog.csdn.net/YZ0826/article/details/80176169" target="_blank" rel="external">https://blog.csdn.net/YZ0826/article/details/80176169</a></p>
+<p><a href="https://www.jianshu.com/p/00dc4ad9b83f" target="_blank" rel="external">https://www.jianshu.com/p/00dc4ad9b83f</a></p>
+<h4 id="函数科里化"><a href="#函数科里化" class="headerlink" title="函数科里化"></a>函数科里化</h4><p>currying又被成为部分求值。一个curring函数首先会接受一些参数，接受了这些参数之后，该函数并不会立即求值，而是继续返回另一个函数，刚才传入的参数在函数形成的闭包中被保存起来。待到函数被真正需要求值的时候，之前传入的所有参数都会被一次性用于求值。</p>
+<h4 id="Array-prototype-slice-call-方法的理解"><a href="#Array-prototype-slice-call-方法的理解" class="headerlink" title="Array.prototype.slice.call()方法的理解"></a>Array.prototype.slice.call()方法的理解</h4><p>改变数组的slice的作用域，在特定作用域中去调用slice方法，call方法的第二个参数表示传递给slice的参数即截取数组的起始位置。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/20/JavaScript apply、call、bind/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-JavaScript中判断数据类型 typeof instanceof constructor toString" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/21/JavaScript中判断数据类型 typeof instanceof constructor toString/">JavaScript中判断数据类型 typeof instanceof constructor toString</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/21/JavaScript中判断数据类型 typeof instanceof constructor toString/" class="archive-article-date">
+  	<time datetime="2018-04-21T09:57:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h4><p>typeof是一个操作符，其右侧跟一个一元表达式，并返回这个表达式的数据类型。一般会返回:boolean、String、object、undefined、function、Number</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">typeof null // object</div></pre></td></tr></table></figure>
+<h4 id="insatnceof"><a href="#insatnceof" class="headerlink" title="insatnceof"></a>insatnceof</h4><p>instanceof 是用来判断A是否为B的实例。instance 检测的是原型</p>
+<p>伪码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">instanceof(a,b)&#123;</div><div class="line">    var l = a._prop_;</div><div class="line">    var r = b.prototype</div><div class="line">    if( l === r)&#123;</div><div class="line">        // A的内部属性_prop_指向B的原型</div><div class="line">        return true</div><div class="line">    &#125;else&#123;</div><div class="line">        return false</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>检测数组的更精确的方法Array.isArray()<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Array.isArray(Array.prototype)</div></pre></td></tr></table></figure></p>
+<h4 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h4><p>当一个函数被定义时候，JS引擎会为F添加prototype原型，然后再在prototype上添加一个constructor属性，并让其指向F的引用。constructor属性始终指向创建当前对象的构造函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function F()&#123;&#125;</div><div class="line">var f = new F()</div><div class="line">f.constructor == F</div></pre></td></tr></table></figure></p>
+<h4 id="toString-NaN"><a href="#toString-NaN" class="headerlink" title="toString"></a>toString</h4><p>toString是Object原型上的方法，使用call来调用该方法会返回调用者的类型字符串。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">Object.prototype.toString.call(&apos;&apos;) ;   // [object String]</div><div class="line">Object.prototype.toString.call(1) ;    // [object Number]</div><div class="line">Object.prototype.toString.call(true) ; // [object Boolean]</div><div class="line">Object.prototype.toString.call(Symbol()); //[object Symbol]</div><div class="line">Object.prototype.toString.call(undefined) ; // [object Undefined]</div><div class="line">Object.prototype.toString.call(null) ; // [object Null]</div><div class="line">Object.prototype.toString.call(new Function()) ; // [object Function]</div><div class="line">Object.prototype.toString.call(new Date()) ; // [object Date]</div><div class="line">Object.prototype.toString.call([]) ; // [object Array]</div><div class="line">Object.prototype.toString.call(new RegExp()) ; // [object RegExp]</div><div class="line">Object.prototype.toString.call(new Error()) ; // [object Error]</div><div class="line">Object.prototype.toString.call(document) ; // [object HTMLDocument]</div><div class="line">Object.prototype.toString.call(window) ; //[object global] window是全局对象 global 的引用</div></pre></td></tr></table></figure></p>
+<p>必须使用call或者apply来调用，而不能直接调用toString,从原型链的角度来讲，所有的对象的原型链最终都指向了Object，按照JS变量查找规则，其他对象应该也能直接访问到Object的toString方法。而事实上，大部分对象都实现了自身的toString方法，这样就可能会导致Object的toString被终止查找，一次要用call、apply来强制调用toString方法</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/21/JavaScript中判断数据类型 typeof instanceof constructor toString/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Array常用方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/15/Array常用方法/">Array常用方法</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/15/Array常用方法/" class="archive-article-date">
+  	<time datetime="2018-04-15T09:57:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="concat"><a href="#concat" class="headerlink" title="concat()"></a>concat()</h4><p>连接两个或多个数组。返回一个新的数组。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var arr1 = [1,2,3,4];</div><div class="line">var arr2 = [8,9,7];</div><div class="line">var sum = arr1.concat(arr2);//[ 1, 2, 3, 4, 8, 9, 7 ]</div><div class="line">console.log(sum)</div></pre></td></tr></table></figure></p>
+<h4 id="join"><a href="#join" class="headerlink" title="join()"></a>join()</h4><p>返回一个字符串。该字符串通过指定的分隔符进行分割。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var arr1 = [1,2,3,4];</div><div class="line">var sum = arr1.join(&apos;;&apos;);</div><div class="line">console.log(sum)//1;2;3;4</div></pre></td></tr></table></figure></p>
+<h4 id="pop"><a href="#pop" class="headerlink" title="pop()"></a>pop()</h4><p>pop() 方法将删除 arrayObject 的最后一个元素，把数组长度减 1，并且返回它删除的元素的值。如果数组已经为空，则 pop() 不改变数组，并返回 undefined 值。</p>
+<h4 id="push"><a href="#push" class="headerlink" title="push()"></a>push()</h4><p>push可以向数组末尾添加一个或者多个元素，直接修改arrayObject。</p>
+<h4 id="shift"><a href="#shift" class="headerlink" title="shift()"></a>shift()</h4><p>shift()用于把数组的第一个元素从其中删除，并返回第一个元素的值.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var arr1 = [1,2,3,4];</div><div class="line">var sum = arr1.shift();//</div><div class="line">console.log(sum)</div></pre></td></tr></table></figure></p>
+<h4 id="slice-start-end"><a href="#slice-start-end" class="headerlink" title="slice(start,end)"></a>slice(start,end)</h4><p>返回一个新的数组，包含从 start 到 end （不包括该元素）的 arrayObject 中的元素。</p>
+<h4 id="splice-Index-howmany-item1…"><a href="#splice-Index-howmany-item1…" class="headerlink" title="splice(Index,howmany,item1…)"></a>splice(Index,howmany,item1…)</h4><ul>
+<li>index: 规定添加/删除项目的位置，使用负数可从数组结尾处规定位置。</li>
+<li>howmany：要删除的项目数量。如果设置为 0，则不会删除项目。</li>
+<li>item: 插入的元素</li>
+</ul>
+<p>改变原来的数组.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var arr1 = [1,2,3,4];</div><div class="line">arr1.splice(1,2,8,8);//</div><div class="line">console.log(arr1)//[ 1, 8, 8, 4 ]</div></pre></td></tr></table></figure></p>
+<h4 id="of"><a href="#of" class="headerlink" title="of()"></a>of()</h4><p>Array.of()将一组值转换为数组<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Array.of(undefined) // [undefined]</div><div class="line">Array.of(1) // [1]</div><div class="line">Array.of(1, 2) // [1, 2]</div></pre></td></tr></table></figure></p>
+<h4 id="find"><a href="#find" class="headerlink" title="find()"></a>find()</h4><p>用于找出第一个符合条件的数组成员。参数是一个回调函数，直到找出第一个返回值为true的成员<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[1, 4, -5, 10].find((n) =&gt; n &lt; 0)</div><div class="line">// -5</div></pre></td></tr></table></figure></p>
+<h4 id="fill"><a href="#fill" class="headerlink" title="fill()"></a>fill()</h4><p>fill方法使用给定值填充一个数组。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">new Array(3).fill(6)//[6,6,6]</div></pre></td></tr></table></figure></p>
+<h4 id="includes"><a href="#includes" class="headerlink" title="includes()"></a>includes()</h4><p>判断数组是否包含某个特定值，返回bollean<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[1, 2, 3].includes(2)     // true</div><div class="line">[1, 2, 3].includes(4)     // false</div><div class="line">[1, 2, NaN].includes(NaN) // true</div></pre></td></tr></table></figure></p>
+<h4 id="Array-from"><a href="#Array-from" class="headerlink" title="Array.from()"></a>Array.from()</h4><p>方法从一个类似数组或可迭代对象中创建一个新的数组实例。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">console.log(Array.from(&apos;foo&apos;));</div><div class="line">// expected output: Array [&quot;f&quot;, &quot;o&quot;, &quot;o&quot;]</div><div class="line"></div><div class="line">console.log(Array.from([1, 2, 3], x =&gt; x + x));</div><div class="line">// expected output: Array [2, 4, 6]</div><div class="line"></div><div class="line"></div><div class="line">console.log(Array.from(&#123;length:100&#125;, x =&gt; 1));//创建一个长度为100的数组并且值都为1</div></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/15/Array常用方法/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-JavaScript函数节流和函数防抖" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/01/JavaScript函数节流和函数防抖/">JavaScript函数节流和函数防抖</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/01/JavaScript函数节流和函数防抖/" class="archive-article-date">
+  	<time datetime="2018-04-01T09:57:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="函数节流"><a href="#函数节流" class="headerlink" title="函数节流"></a>函数节流</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>函数节流是指阻止一个函数在很短时间间隔内连续调用。只有当上一次函数执行后达到规定的时间间隔，才能进行下一次调用。但要保证一个累计最小调用间隔（否则拖拽类的节流都将无连续效果）</p>
+<h4 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h4><p>函数节流应用于onresize,onscroll等短时间内会多次触发的事件。</p>
+<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>定义一个变量保存执行情况。保证在一定事件内完成一次操作。</p>
+<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">function throttle(fn,wait)&#123;</div><div class="line">    var isExecute = false;</div><div class="line">    return function()&#123;</div><div class="line">        var args = Array.protptoye.slice.apply(arguments);</div><div class="line">        if(isExecute)&#123;</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line">        isRxecute = true;</div><div class="line">        setTimeout(function()&#123;</div><div class="line">            fn.apply(this,args)</div><div class="line">        &#125;,wait)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="函数防抖"><a href="#函数防抖" class="headerlink" title="函数防抖"></a>函数防抖</h3><h4 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h4><p>多次触发事件的时候，事件处理函数只执行一次，并且是在触发操作结束时候执行</p>
+<h4 id="应用-1"><a href="#应用-1" class="headerlink" title="应用"></a>应用</h4><ol>
+<li>表单组件输入内容验证</li>
+<li>防止多次点击导致表单多次提交<br>类似于按下一个弹簧，你松手的时候弹簧才能弹起。本质上是将多次操作合并为一次操作。可用一个定时器维护，事件触发后wait时间内如果事件重复触发，那么取消当前定时器，重新设置一个时延为wait的定时器。</li>
+</ol>
+<h4 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a>实现</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function debounce(fn,wait)&#123;</div><div class="line">    let timer;</div><div class="line">    return function()&#123;</div><div class="line">        var args = Array.protptype.slice.apply(arguments);</div><div class="line">        if(timer)&#123;</div><div class="line">            clearTimeout(timer)</div><div class="line">        &#125;</div><div class="line">        timer = setTimeout(function()&#123;</div><div class="line">            fn.apply(this,args)</div><div class="line">        &#125;,wait)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/01/JavaScript函数节流和函数防抖/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-cluster集群" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -383,533 +1001,10 @@
 
 
   
-    <article id="post-JavaScript函数节流和函数防抖" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/01/JavaScript函数节流和函数防抖/">JavaScript 事件</a>
-    </h1>
-  
-
-        
-        <a href="/2018/03/01/JavaScript函数节流和函数防抖/" class="archive-article-date">
-  	<time datetime="2018-03-01T09:57:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="函数节流"><a href="#函数节流" class="headerlink" title="函数节流"></a>函数节流</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>函数节流是指阻止一个函数在很短时间间隔内连续调用。只有当上一次函数执行后达到规定的时间间隔，才能进行下一次调用。但要保证一个累计最小调用间隔（否则拖拽类的节流都将无连续效果）</p>
-<h4 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h4><p>函数节流应用于onresize,onscroll等短时间内会多次触发的事件。</p>
-<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>定义一个变量保存执行情况。保证在一定事件内完成一次操作。</p>
-<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">function throttle(fn,wait)&#123;</div><div class="line">    var isExecute = false;</div><div class="line">    return function()&#123;</div><div class="line">        var args = Array.protptoye.slice.apply(arguments);</div><div class="line">        if(isExecute)&#123;</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line">        isRxecute = true;</div><div class="line">        setTimeout(function()&#123;</div><div class="line">            fn.apply(this,args)</div><div class="line">        &#125;,wait)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="函数防抖"><a href="#函数防抖" class="headerlink" title="函数防抖"></a>函数防抖</h3><h4 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h4><p>多次触发事件的时候，事件处理函数只执行一次，并且是在触发操作结束时候执行</p>
-<h4 id="应用-1"><a href="#应用-1" class="headerlink" title="应用"></a>应用</h4><ol>
-<li>表单组件输入内容验证</li>
-<li>防止多次点击导致表单多次提交<br>类似于按下一个弹簧，你松手的时候弹簧才能弹起。本质上是将多次操作合并为一次操作。可用一个定时器维护，事件触发后wait时间内如果事件重复触发，那么取消当前定时器，重新设置一个时延为wait的定时器。</li>
-</ol>
-<h4 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a>实现</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function debounce(fn,wait)&#123;</div><div class="line">    let timer;</div><div class="line">    return function()&#123;</div><div class="line">        var args = Array.protptype.slice.apply(arguments);</div><div class="line">        if(timer)&#123;</div><div class="line">            clearTimeout(timer)</div><div class="line">        &#125;</div><div class="line">        timer = setTimeout(function()&#123;</div><div class="line">            fn.apply(this,args)</div><div class="line">        &#125;,wait)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/01/JavaScript函数节流和函数防抖/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-JavaScript-事件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/21/JavaScript-事件/">JavaScript 事件</a>
-    </h1>
-  
-
-        
-        <a href="/2018/02/21/JavaScript-事件/" class="archive-article-date">
-  	<time datetime="2018-02-21T09:57:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h3><p>JavaScript和HTML之间的交互是通过事件来完成的。事件，就是文档或浏览器窗口中发生的一些特定的交互瞬间。</p>
-        
-          <a class="article-more-a" href="/2018/02/21/JavaScript-事件/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/21/JavaScript-事件/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-JavaScript闭包" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/11/JavaScript闭包/">JavaScript闭包</a>
-    </h1>
-  
-
-        
-        <a href="/2018/01/11/JavaScript闭包/" class="archive-article-date">
-  	<time datetime="2018-01-11T13:22:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="什么是闭包"><a href="#什么是闭包" class="headerlink" title="什么是闭包"></a>什么是闭包</h3><h6 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h6><blockquote>
-<p>闭包是指有权访问另一个函数作用域中的变量的函数。创建闭包的常见方式，就是在一个函数内部创建另一个函数</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2018/01/11/JavaScript闭包/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/01/11/JavaScript闭包/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-webpack基本配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/28/webpack基本配置/">webpack基本配置</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/28/webpack基本配置/" class="archive-article-date">
-  	<time datetime="2017-11-28T14:12:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="什么是webpack"><a href="#什么是webpack" class="headerlink" title="什么是webpack"></a>什么是webpack</h3><p>webpack是前端模块化工具。可以找到JavaScript模块以及其他一些浏览器不能直接运行的扩展语言（sass,Typescript等），并将其转换和打包为合适的格式供浏览器使用</p>
-        
-          <a class="article-more-a" href="/2017/11/28/webpack基本配置/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">webpack</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/28/webpack基本配置/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-JavaScript变量、作用域和内存问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/06/JavaScript变量、作用域和内存问题/">JavaScript变量、作用域和内存问题</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/06/JavaScript变量、作用域和内存问题/" class="archive-article-date">
-  	<time datetime="2017-08-06T08:46:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p>JavaScript变量松散类型的本质，决定了它只是在特定时间用于保存特定值的一个名字而已。由于不存在定义某个变量必须要保存何种数据类型值的规则，变量的值及其数据类型可以在脚本的生命周期内改变</p>
-        
-          <a class="article-more-a" href="/2017/08/06/JavaScript变量、作用域和内存问题/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/06/JavaScript变量、作用域和内存问题/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-JavaScript执行顺序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/30/JavaScript执行顺序/">JavaScript执行顺序</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/30/JavaScript执行顺序/" class="archive-article-date">
-  	<time datetime="2017-07-30T09:28:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="JavaScript运行机制"><a href="#JavaScript运行机制" class="headerlink" title="JavaScript运行机制"></a>JavaScript运行机制</h2><p>JavaScript是一种描述型脚本语言，它不需要进行编译成中间语言，而是由浏览器进行动态的解析与执行。</p>
-        
-          <a class="article-more-a" href="/2017/07/30/JavaScript执行顺序/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/30/JavaScript执行顺序/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-my-first-blog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/24/my-first-blog/">my first blog</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/24/my-first-blog/" class="archive-article-date">
-  	<time datetime="2017-06-24T10:02:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="搞定了"><a href="#搞定了" class="headerlink" title="搞定了"></a>搞定了</h4><p>用了一个小时搞定了技术博客<br>相当的开心<br>原本以为会费很长时间 看来很久的攻略<br>没想到很快就搞定了！</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/24/my-first-blog/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 
 
@@ -1012,6 +1107,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">webpack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
             
             <div class="clearfix"></div>
